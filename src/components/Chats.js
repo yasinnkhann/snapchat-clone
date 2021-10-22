@@ -1,16 +1,16 @@
 /* eslint-disable no-unused-vars */
-import { Avatar } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
-import './Chats.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { Avatar } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
-import { auth, db } from './firebase';
-import Chat from './Chat';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from './features/appSlice';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import { useHistory } from 'react-router-dom';
-import { resetCameraImage } from './features/cameraSlice';
+import { selectUser } from '../features/appSlice.js';
+import { resetCameraImage } from '../features/cameraSlice.js';
+import Chat from './Chat.js';
+import { auth, db } from '../firebaseConfig.js';
+import '../styles/Chats.css';
 
 function Chats() {
   const [posts, setPosts] = useState([]);
@@ -29,6 +29,7 @@ function Chats() {
           }))
         )
       );
+    return () => setPosts([]);
   }, []);
 
   const takeSnap = () => {

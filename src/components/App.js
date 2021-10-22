@@ -1,16 +1,14 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import './App.css';
-import Chats from './Chats';
-import ChatView from './ChatView';
-import { login, logout, selectUser } from './features/appSlice';
-import { auth } from './firebase';
-import Login from './Login';
-import Preview from './Preview';
-import WebcamCapture from './WebcamCapture';
+import { login, logout, selectUser } from '../features/appSlice.js';
+import Chats from './Chats.js';
+import ChatView from './ChatView.js';
+import { auth } from '../firebaseConfig';
+import Login from './Login.js';
+import Preview from './Preview.js';
+import WebcamCapture from './WebcamCapture.js';
+import '../styles/App.css';
 
 function App() {
   const user = useSelector(selectUser);
@@ -30,7 +28,7 @@ function App() {
         dispatch(logout());
       }
     });
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className='app'>

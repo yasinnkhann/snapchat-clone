@@ -1,23 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import './ChatView.css';
-import { selectSelectedImage } from './features/appSlice';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
+import { selectSelectedImage } from '../features/appSlice.js';
+import '../styles/ChatView.css';
 
 function ChatView() {
   const selectedImage = useSelector(selectSelectedImage);
   const history = useHistory();
 
+  const exit = useCallback(() => {
+    history.replace('/chats');
+  }, [history]);
+
   useEffect(() => {
     if (!selectedImage) {
       exit();
     }
-  }, [selectedImage]);
-
-  const exit = () => {
-    history.replace('/chats');
-  };
+  }, [selectedImage, exit]);
 
   return (
     <div className='chatView'>

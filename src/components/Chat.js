@@ -1,12 +1,12 @@
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import ReactTimeago from 'react-timeago';
 import { Avatar } from '@material-ui/core';
 import StopRoundedIcon from '@material-ui/icons/StopRounded';
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import ReactTimeago from 'react-timeago';
-import './Chat.css';
-import { selectImage } from './features/appSlice';
-import { db } from './firebase';
+import { selectImage } from '../features/appSlice.js';
+import { db } from '../firebaseConfig.js';
+import '../styles/Chat.css';
 
 function Chat({ id, username, timestamp, read, imageUrl, profilePic }) {
   const dispatch = useDispatch();

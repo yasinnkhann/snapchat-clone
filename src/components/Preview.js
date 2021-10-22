@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { resetCameraImage, selectCameraImage } from './features/cameraSlice';
-import './Preview.css';
+import { v4 as uuid } from 'uuid';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+import 'firebase/compat/auth';
+import 'firebase/compat/storage';
 import CloseIcon from '@material-ui/icons/Close';
 import TextFieldsIcon from '@material-ui/icons/TextFields';
 import CreateIcon from '@material-ui/icons/Create';
@@ -12,13 +15,13 @@ import NoteIcon from '@material-ui/icons/Note';
 import CropIcon from '@material-ui/icons/Crop';
 import TimerIcon from '@material-ui/icons/Timer';
 import SendIcon from '@material-ui/icons/Send';
-import { v4 as uuid } from 'uuid';
-import { db, storage } from './firebase';
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/firestore';
-import 'firebase/compat/auth';
-import 'firebase/compat/storage';
-import { selectUser } from './features/appSlice';
+import { selectUser } from '../features/appSlice.js';
+import {
+  resetCameraImage,
+  selectCameraImage,
+} from '../features/cameraSlice.js';
+import { db, storage } from '../firebaseConfig.js';
+import '../styles/Preview.css';
 
 function Preview() {
   const cameraImage = useSelector(selectCameraImage);
